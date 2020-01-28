@@ -613,10 +613,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 94f0c895-3aa2-4981-9d71-eaf321e299af
+  cloudProjectId: 0c203d9b-a94f-4116-a263-3ac0bcbda30b
   framebufferDepthMemorylessMode: 0
-  projectName: Hermanos Mariano
-  organizationId: taller-iv-2019
+  projectName: HermanosMarianoFix
+  organizationId: lauraabrilfr21
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
