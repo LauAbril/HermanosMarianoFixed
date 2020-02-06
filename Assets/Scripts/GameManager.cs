@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public string CondicionDeVictoria;
     [HideInInspector]
-    public string ultimoCulpable;    
+    public string ultimoCulpable;
     [HideInInspector]
     public int bulletCounter = 0;
 
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             money = 0;
 
             //Analytics            
-            GameTime = Time.time;            
+            GameTime = Time.time;
             bulletCounter = 0;
             //if (FindObjectOfType<CountDown>())
             //{
@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
                     enemies[i].trigger = false;
                 }
             }
-           
+
             player = FindObjectOfType<Player>();
 
             MorirAnalyticsEvent();
@@ -270,6 +270,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+
+    //Herramientas para los eventos de unity
+
+    //obtener el nivel como parte de una zona, si da -1 hubo un error, busca entre los caracteres del nombre de la escena un numero
     public int LevelIndexer(string level)
     {
         if (levelIndex != 0)
@@ -291,13 +295,14 @@ public class GameManager : MonoBehaviour
             {
                 levelNumber = 4;
             }
-            
+
             //Debug.Log(levelNumber);
         }
 
         return levelNumber;
     }
 
+    //obtener zona a la que pertenece el nivel
     public int GetZone(int levelIndex)
     {
         if (levelIndex == 2) return 0;
@@ -313,12 +318,14 @@ public class GameManager : MonoBehaviour
         return -1;
     }
 
+    //convierte los mismos objetos para que tengan el mismo nombre en los analytics, haciendo más facil su generalizacion
+    //simplemente borra los (1) que agrega unity automaticamente a los objetos repetidos
     public string ConvertToType(string input)
     {
         string output = "";
-        
+
         //filtrado de nombre para el "tipo"
-        if(input.Contains("Bullet"))
+        if (input.Contains("Bullet"))
         {
             input = input.Remove(0, 8);
             input = input.Remove(input.Length - 1);
@@ -333,7 +340,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (input[i-1] == ' ')
+                if (input[i - 1] == ' ')
                 {
                     output = output.Remove(i - 1);
                 }
@@ -343,7 +350,7 @@ public class GameManager : MonoBehaviour
                     return output;
                 }
                 Debug.Log(output);
-                return output;                
+                return output;
             }
         }
 
@@ -352,6 +359,7 @@ public class GameManager : MonoBehaviour
         return output;
     }
 
+    //le agrega a los abismos la cordenada x
     string FormatQueLoMato(string input)
     {
         string output = "";
@@ -363,10 +371,10 @@ public class GameManager : MonoBehaviour
             output += "X" + x;
             return output;
         }
-        
+
         for (int i = 0; i < input.Length; i++)
         {
-            if(input[i] != ' ')
+            if (input[i] != ' ')
             {
                 output += input[i];
             }
@@ -377,6 +385,7 @@ public class GameManager : MonoBehaviour
         return output;
     }
 
+    //crea un debug detallado en la consola sobre un diccionario destinado al unity analytics
     void analyticsTrace(Dictionary<string, object> dictionary, string name)
     {
         string traceHolder = name + "    haz clic para ver más detalles" + "\n";
